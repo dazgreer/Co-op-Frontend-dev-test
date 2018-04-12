@@ -81,28 +81,10 @@ gulp.task('less', function () {
 		- minify
 */
 gulp.task('js-core', function() {
-	
-	gulp.src(['src/script/require.js', 'src/script/app.js'])
-  		.pipe(sourcemaps.init())
-		.pipe(concat('require.js'))
-		.pipe(uglify())
-		.pipe(rename({ suffix: '.min' }))
-		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest('dist/js/'))
-		.pipe(connect.reload());
 
-	gulp.src('src/script/plugins/*.js')
+	gulp.src('src/script/app.js')
   		.pipe(sourcemaps.init())
-		.pipe(concat('plugins.js'))
-		.pipe(uglify())
-		.pipe(rename({ suffix: '.min' }))
-		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest('dist/js/'))
-		.pipe(connect.reload());
-
-	gulp.src('src/script/script.js')
-  		.pipe(sourcemaps.init())
-		.pipe(concat('script.js'))
+		.pipe(concat('app.js'))
 		.pipe(uglify())
 		.pipe(rename({ suffix: '.min' }))
 		.pipe(sourcemaps.write('.'))
