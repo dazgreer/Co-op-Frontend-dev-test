@@ -1,0 +1,119 @@
+/***************************************
+03_type.less
+***************************************/
+
+// -----------------------------------------------------------------------------------------------
+// HEADINGS
+// -----------------------------------------------------------------------------------------------
+
+	h1, h2 {
+	    color: @color-text;
+
+	}
+
+	h1 {
+		margin-bottom: (@rhythm*2);
+		.font-size(30px);
+		.line-height(32px);
+	}
+		
+	h2 {
+		margin-bottom: (@rhythm*2);
+		.font-size(21px);
+		.line-height(26px);
+	}
+		
+	h3 {
+		margin-bottom: (@rhythm*2);
+		.font-size(21px);
+		.line-height(26px);
+		font-weight: 400;
+	}
+
+
+// -----------------------------------------------------------------------------------------------
+// PARAGRAPHS
+// -----------------------------------------------------------------------------------------------
+
+	p {
+		margin-bottom: (@rhythm*3);
+		.font-size(16px);
+		.line-height(20px);
+	}
+
+
+
+// -----------------------------------------------------------------------------------------------
+// LISTS
+// -----------------------------------------------------------------------------------------------
+
+	dl {
+		
+		dt {
+			margin-top: @rhythm;
+			font-weight: bold;
+
+			&:first-child {
+				margin-top: 0;	
+			}
+		}
+
+		dd {
+			margin-left: (@rhythm*3);
+		}
+
+	}
+
+
+
+// -----------------------------------------------------------------------------------------------
+// LINKS
+// -----------------------------------------------------------------------------------------------
+
+	a {
+	    color: @color-link;
+		text-decoration: underline;
+
+		&:hover,
+		&:focus {
+		    text-decoration: none;
+		}
+	}
+
+
+
+// -----------------------------------------------------------------------------------------------
+// HELPERS - Hidden text
+// -----------------------------------------------------------------------------------------------
+
+// Only display content to screen readers
+//
+// See: http://a11yproject.com/posts/how-to-hide-content/
+
+	.sr-only {
+	  position: absolute;
+	  width: 1px;
+	  height: 1px;
+	  margin: -1px;
+	  padding: 0;
+	  overflow: hidden;
+	  clip: rect(0,0,0,0);
+	  border: 0;
+	}
+
+// Use in conjunction with .sr-only to only display content when it's focused.
+// Useful for "Skip to main content" links; see http://www.w3.org/TR/2013/NOTE-WCAG20-TECHS-20130905/G1
+// Credit: HTML5 Boilerplate
+
+	.sr-only-focusable {
+	  &:active,
+	  &:focus {
+	    position: static;
+	    width: auto;
+	    height: auto;
+	    margin: 0;
+	    overflow: visible;
+	    clip: auto;
+	  }
+	}
+

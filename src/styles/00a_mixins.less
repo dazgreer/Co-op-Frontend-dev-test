@@ -1,0 +1,337 @@
+// ***************************************
+// 00b_mixins.less
+// ***************************************
+
+// -----------------------------------------------------------------------------------------------
+// REM FONT SIZE & LINE HEIGHT
+// -----------------------------------------------------------------------------------------------
+
+	.font-size(@pxValue){
+		@remValue: ~`parseInt("@{pxValue}", 10) / parseInt("@{rem-base}", 10)`;
+		font-size: @pxValue;
+		font-size: ~"@{remValue}rem";
+	}
+
+	.line-height(@pxValue){
+		@remValue: ~`parseInt("@{pxValue}", 10) / parseInt("@{rem-base}", 10)`;
+		line-height: @pxValue;
+		line-height: ~"@{remValue}rem";
+	}
+
+
+// -----------------------------------------------------------------------------------------------
+// CALCULATE A "FLUID" (%) WIDTH
+// (Ethan Marcotte: target / context = result method)
+// -----------------------------------------------------------------------------------------------
+
+	.fluid-width(@target, @context) {
+		width: 100%*(@target/@context);
+		// ie correct formular to prevent
+		*width: (100%*(@target/@context))-@grid-correction;
+	}
+
+	.fluid-margin-right(@target, @context) {
+		margin-right: 100%*(@target/@context);
+		// ie correct formular to prevent
+		*margin-right: (100%*(@target/@context))-@grid-correction;
+	}
+
+	.fluid-margin-left(@target, @context) {
+		margin-left: 100%*(@target/@context);
+		// ie correct formular to prevent
+		*margin-left: (100%*(@target/@context))-@grid-correction;
+	}
+
+	.fluid-padding-right(@target, @context) {
+		padding-right: 100%*(@target/@context);
+		// ie correct formular to prevent
+		*padding-right: (100%*(@target/@context))-@grid-correction;
+	}
+
+	.fluid-padding-left(@target, @context) {
+		padding-left: 100%*(@target/@context);
+		// ie correct formular to prevent
+		*padding-left: (100%*(@target/@context))-@grid-correction;
+	}
+
+	.fluid-right(@target, @context) {
+		right: 100%*(@target/@context);
+		// ie correct formular to prevent
+		*right: (100%*(@target/@context))-@grid-correction;
+	}
+
+	.fluid-left(@target, @context) {
+		left: 100%*(@target/@context);
+		// ie correct formular to prevent
+		*left: (100%*(@target/@context))-@grid-correction;
+	}
+
+
+// -----------------------------------------------------------------------------------------------
+// IMAGE REPLACEMENT
+// (http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/)
+// -----------------------------------------------------------------------------------------------
+
+	.hide-text() {
+		text-indent: 150%;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
+	.hide-text-alt() {
+		border: 0;
+		font: 0/0 a;
+		text-shadow: none;
+		color: transparent;
+	}
+
+	.display-inlineblock() {
+		display: inline-block;
+		*display: inline;
+		*zoom: 1;
+	}
+
+
+// -----------------------------------------------------------------------------------------------
+// RETURNS EVEN WIDTH ATTRIBUTE FOR ELM OF A COLLECTION THAT YOU'D LIKE TO FILL A CERTAIN SPACE
+// 1st arg: how many elmements you need to divide the space by. E.g: 5 nav li items
+// 2nd arg: the total percentage of the space containing space you want them to fill. E.g: 100% of the containing UL.
+// -----------------------------------------------------------------------------------------------
+
+	.percentage-width(@totalItems: 5, @totalSpace: 100%) {
+		width: @totalSpace/@totalItems;
+		*width: (@totalSpace/@totalItems)-@grid-correction;
+	}
+
+	.percentage-minwidth(@totalItems: 5, @totalSpace: 100%) {
+		min-width: @totalSpace/@totalItems;
+	}
+
+	.percentage-maxwidth(@totalItems: 5, @totalSpace: 100%) {
+		max-width: @totalSpace/@totalItems;
+	}
+
+
+// -----------------------------------------------------------------------------------------------
+// PRODUCE "..." 
+// -----------------------------------------------------------------------------------------------
+
+	.ellipsis(@ellipwidth: 100%) {
+		white-space: nowrap;
+		overflow: hidden;
+		width: @ellipwidth;
+		text-overflow: ellipsis;
+	}
+
+
+// -----------------------------------------------------------------------------------------------
+// RGBA BACKGROUNDS
+// -----------------------------------------------------------------------------------------------
+
+	.rgba-bg(@colour, @alpha){
+		@alphaColour: hsla(hue(@colour), saturation(@colour), lightness(@colour), @alpha);
+		@ieAlphaColour: argb(@alphaColour);
+
+		@hex: ~`"@{colour}".replace('#','')`;
+		
+		// Fallback for older browsers
+		background: @alphaColour;
+	}
+
+	.rgba-bg-nofilter(@colour, @alpha){
+		@alphaColour: hsla(hue(@colour), saturation(@colour), lightness(@colour), @alpha);
+		@ieAlphaColour: argb(@alphaColour);
+
+		background-color: @colour; // Fallback for older browsers
+		background-color: @alphaColour;
+
+	}
+
+	.at2x-bgimage(@path, @size: auto auto){
+		background-image: url(@path);
+		@at2x_path: ~`"@{path}".split('.').slice(0, "@{path}".split('.').length - 1).join(".") + "@2x" + "." + "@{path}".split('.')["@{path}".split('.').length - 1]`;
+
+		@media (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5) {
+			background-image: url(@at2x_path);
+			background-size: @size;
+		}
+	}
+
+	.at2x-bgimage-sprite(@path, @width, @height, @sprite-no-x: 1, @sprite-no-y: 1 ){
+		background-image: url(@path);
+		@at2x_path: ~`"@{path}".split('.').slice(0, "@{path}".split('.').length - 1).join(".") + "@2x" + "." + "@{path}".split('.')["@{path}".split('.').length - 1]`;
+
+		@media (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5) {
+			background-image: url(@at2x_path);
+			background-size: @width*@sprite-no-x @height*@sprite-no-y;
+		}
+	}
+
+
+// -----------------------------------------------------------------------------------------------
+// CLEAR FLOATS
+// -----------------------------------------------------------------------------------------------
+
+	.clearfix() {
+		*zoom: 1;
+		&:before,
+		&:after {
+			display: table;
+			content: "";
+		}
+		&:after {
+			clear: both;
+		}
+	}
+
+
+// -----------------------------------------------------------------------------------------------
+// ACCESSIBLE HIDE
+// -----------------------------------------------------------------------------------------------
+
+	.accessible-hide() {
+		position: absolute !important;
+		clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+		clip: rect(1px, 1px, 1px, 1px);
+	}
+
+	.ir() {
+		border: 0;
+		font: 0/0 a;
+		text-shadow: none;
+		color: transparent;
+		background-color: transparent;
+	}
+
+	.hidden() {
+		display: none !important;
+		visibility: hidden;
+	}
+
+	.visually-hidden() {
+		border: 0;
+		clip: rect(0 0 0 0);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+		&.focusable:active,
+		&.focusable:focus {
+		    clip: auto;
+		    height: auto;
+		    margin: 0;
+		    overflow: visible;
+		    position: static;
+		    width: auto;
+		}
+	}
+
+
+// -----------------------------------------------------------------------------------------------
+// PLACEHOLDER
+// -----------------------------------------------------------------------------------------------
+
+	.placeholder(@color: @input-color-placeholder) {
+		&:-moz-placeholder            { color: @color; } // Firefox 4-18
+		&::-moz-placeholder           { color: @color; } // Firefox 19+
+		&:-ms-input-placeholder       { color: @color; } // Internet Explorer 10+
+		&::-webkit-input-placeholder  { color: @color; } // Safari and Chrome
+	}
+
+
+// -----------------------------------------------------------------------------------------------
+// RESIZE ANYTHING
+// -----------------------------------------------------------------------------------------------
+
+	.resizable(@direction) {
+	  resize: @direction; // Options: horizontal, vertical, both
+	  overflow: auto; // Safari fix
+	}
+
+
+// -----------------------------------------------------------------------------------------------
+// CSS3 CONTENT COLUMNS
+// -----------------------------------------------------------------------------------------------
+
+	.content-columns(@columnCount, @columnGap: @globalGutter) {
+	  -webkit-column-count: @columnCount;
+		 -moz-column-count: @columnCount;
+			  column-count: @columnCount;
+	  -webkit-column-gap: @columnGap;
+		 -moz-column-gap: @columnGap;
+			  column-gap: @columnGap;
+	}
+
+	.content-column-gap(@columnGap: @globalGutter) {
+	  -webkit-column-gap: @columnGap !important;
+		 -moz-column-gap: @columnGap !important;
+			  column-gap: @columnGap !important;
+	}
+	.content-column-span(@columnSpan) {
+	  -webkit-column-span: @columnSpan;
+		 -moz-column-span: @columnSpan;
+			  column-span: @columnSpan;
+	}
+
+
+// -----------------------------------------------------------------------------------------------
+// OPACITY
+// -----------------------------------------------------------------------------------------------
+
+	.opacity(@opacity) {
+		opacity: @opacity / 100;
+		filter: ~"alpha(opacity=@{opacity})";
+	}
+
+
+// -----------------------------------------------------------------------------------------------
+// RESET FILTERS FOR IE
+// -----------------------------------------------------------------------------------------------
+
+	.reset-filter() {
+		filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled = false)"));
+	}
+
+
+// -----------------------------------------------------------------------------------------------
+// RESPONSIVE UTILS
+// -----------------------------------------------------------------------------------------------
+
+// More easily include all the states for responsive-utilities.less.
+	.responsive-visibility() {
+		display: block !important;
+		table&  { display: table; }
+		tr&     { display: table-row !important; }
+		th&,
+		td&     { display: table-cell !important; }
+	}
+
+	.responsive-invisibility() {
+	 	display: none !important;
+	}
+
+
+// -----------------------------------------------------------------------------------------------
+// LAST CHILD
+// -----------------------------------------------------------------------------------------------
+
+	.last-child() {
+		>:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+
+
+// -----------------------------------------------------------------------------------------------
+// RESET HEIGHT
+// -----------------------------------------------------------------------------------------------
+
+	.reset-height() {
+		@media (max-width: @break-point-xs-max) {
+			height: auto !important;
+		}
+	}
+	

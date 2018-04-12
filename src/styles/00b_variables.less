@@ -1,0 +1,141 @@
+// ***************************************
+// 00c_variables.less
+// ***************************************
+
+// -----------------------------------------------------------------------------------------------
+// COLOR PALETTE
+// -----------------------------------------------------------------------------------------------
+
+	// Primary Palette
+		@color-primary: #909d31;
+		@color-primary-dark: #497b10;
+
+
+	// Secondary Palette
+		@color-secondary: #334c89;
+
+
+	// Grey Palette
+		@color-grey-28: #282828;
+		@color-grey-9f: #9f9f9f;
+		@color-grey-dc: #dcdcdc;
+		@color-grey-fa: #fafafa;
+		@color-grey-f: #fff;
+
+
+	// Text
+		
+		@color-text: @color-grey-28;
+		@color-link: @color-grey-28;
+
+
+// -----------------------------------------------------------------------------------------------
+// FONTS
+// -----------------------------------------------------------------------------------------------
+
+	// Family
+		@font-ss: 'Nunito', sans-serif;
+
+	// Sizes
+		@rem-base: 16px; // 100% browser font size
+		@font-size-base: 16px; // use .font-size(pxValue) to define font sizes
+
+	// Rhythm
+		@rhythm: 6px;
+		@line-height-base: @rhythm*3;
+
+
+// -----------------------------------------------------------------------------------------------
+// DIMENSIONS
+// -----------------------------------------------------------------------------------------------
+
+	@min-width: 320px; // overall max width
+	@max-width: 1200px; // overall max width
+
+	@width-xs-min: @min-width;
+	@width-xs-max: 479px;
+
+	@width-sm-min: 480px;
+	@width-sm-max: 767px;
+
+	@width-md-min: 768px;
+	@width-md-max: 999px;
+
+	@width-lg-min: 1000px;
+	@width-lg-max: @max-width;
+
+
+// -----------------------------------------------------------------------------------------------
+// GRID SYSTEM
+// -----------------------------------------------------------------------------------------------
+
+	@grid-columns: 12;
+	@grid-column-width: 8.33%;
+	@grid-gutter-width: 12px; // half of gap
+
+
+// -----------------------------------------------------------------------------------------------
+// MEDIA QUERY BREAKPOINTS (px & em)
+// -----------------------------------------------------------------------------------------------
+
+	//  XS
+
+		@screen-xs-min-px: @width-xs-min;
+		@screen-xs-min-em-val: ~`parseInt("@{screen-xs-min-px}", 10) / parseInt("@{rem-base}", 10)`;
+		@screen-xs-min-em: ~"@{screen-xs-min-em-val}em";
+		// Set to -px or -em
+		@screen-xs-min: @screen-xs-min-em;
+
+		@screen-xs-max-px: @width-xs-max;
+		@screen-xs-max-em-val: ~`parseInt("@{screen-xs-max-px}", 10) / parseInt("@{rem-base}", 10)`;
+		@screen-xs-max-em: ~"@{screen-xs-max-em-val}em";
+		// Set to -px or -em
+		@screen-xs-max: @screen-xs-max-em;
+
+
+
+	//  SM
+
+		@screen-sm-min-px: @width-sm-min;
+		@screen-sm-min-em-val: ~`parseInt("@{screen-sm-min-px}", 10) / parseInt("@{rem-base}", 10)`;
+		@screen-sm-min-em: ~"@{screen-sm-min-em-val}em";
+		// Set to -px or -em
+		@screen-sm-min: @screen-sm-min-em;
+
+		@screen-sm-max-px: @width-sm-max;
+		@screen-sm-max-em-val: ~`parseInt("@{screen-sm-max-px}", 10) / parseInt("@{rem-base}", 10)`;
+		@screen-sm-max-em: ~"@{screen-sm-max-em-val}em";
+		// Set to -px or -em
+		@screen-sm-max: @screen-sm-max-em;
+
+	
+
+	// MD
+
+		@screen-md-min-px: @width-md-min;
+		@screen-md-min-em-val: ~`parseInt("@{screen-md-min-px}", 10) / parseInt("@{rem-base}", 10)`;
+		@screen-md-min-em: ~"@{screen-md-min-em-val}em";
+		// Set to -px or -em
+		@screen-md-min: @screen-md-min-em;
+
+		@screen-md-max-px: @width-md-max;
+		@screen-md-max-em-val: ~`parseInt("@{screen-md-max-px}", 10) / parseInt("@{rem-base}", 10)`;
+		@screen-md-max-em: ~"@{screen-md-max-em-val}em";
+		// Set to -px or -em
+		@screen-md-max: @screen-md-max-em;
+
+	
+
+	// LG
+
+		@screen-lg-min-px: @width-lg-min;
+		@screen-lg-min-em-val: ~`parseInt("@{screen-lg-min-px}", 10) / parseInt("@{rem-base}", 10)`;
+		@screen-lg-min-em: ~"@{screen-lg-min-em-val}em";
+		// Set to -px or -em
+		@screen-lg-min: @screen-lg-min-em;
+
+		@screen-lg-max-px: @width-lg-max;
+		@screen-lg-max-em-val: ~`parseInt("@{screen-lg-max-px}", 10) / parseInt("@{rem-base}", 10)`;
+		@screen-lg-max-em: ~"@{screen-lg-max-em-val}em";
+		// Set to -px or -em
+		@screen-lg-max: @screen-lg-max-em;

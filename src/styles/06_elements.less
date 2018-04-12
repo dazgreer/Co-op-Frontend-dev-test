@@ -1,0 +1,125 @@
+/***************************************
+05_elements.less
+***************************************/
+
+// -----------------------------------------------------------------------------------------------
+// BUTTON
+// -----------------------------------------------------------------------------------------------
+
+	.btn {
+		padding: (@rhythm*3);
+		background: @color-secondary;
+		border-radius: 4px;
+		color: @color-grey-f;
+		.font-size(16px);
+		.line-height(16px);
+		font-weight: 700;
+		text-align: center;
+		cursor: pointer;
+		transition: background-color 0.2s ease-in-out;
+
+		@media (max-width: @screen-xs-max) {
+			display: block;
+			width: 100%;
+			border-radius: 0 0 4px 4px;
+		}
+
+		&:hover,
+		&:focus {
+			background: fade(@color-primary, 75%);	
+		}
+	}
+
+
+
+// -----------------------------------------------------------------------------------------------
+// PROGRESS
+// -----------------------------------------------------------------------------------------------
+
+	.progress {
+		appearance: none;
+
+		width: 100%;
+		height: 24px;
+		margin-bottom: (@rhythm*5);
+		border: 1px solid @color-primary-dark;
+		background-color: transparent;
+
+		.progress-bar() {
+			background-color: transparent;
+		}
+
+		&::-webkit-progress-bar {
+		 	.progress-bar();
+		}
+
+		.progress-value() {
+			background-color: @color-primary;
+		}
+
+		&::-webkit-progress-value {
+  			.progress-value();	
+		}
+
+		&::-moz-progress-bar {
+  			.progress-value();	
+		}
+
+	}
+
+
+
+// -----------------------------------------------------------------------------------------------
+// TABLE
+// -----------------------------------------------------------------------------------------------
+
+	.table {
+
+		table {
+			width: 100%;
+			margin-bottom: (@rhythm*4);
+		}
+
+		th, td {
+			padding-right: (@rhythm*2);
+		}
+
+		th {
+			padding-bottom: (@rhythm*2);
+			.font-size(20px);
+			.line-height(20px);
+			font-weight: 400;
+			text-align: left;
+
+			@media (max-width: @screen-xs-max) {
+				.sr-only();
+			}
+		}
+
+		td {
+			.font-size(30px);
+			.line-height(30px);
+			font-weight: 700;
+
+			@media (max-width: @screen-xs-max) {
+				display: block;
+			}
+
+			&:before {
+				@media (max-width: @screen-xs-max) {
+					content: attr(data-th);
+					display: block;
+					margin-bottom: (@rhythm);
+					.font-size(20px);
+					.line-height(20px);
+					font-weight: 400;
+				}
+			}
+
+			& + td {
+				margin-top: (@rhythm*3);
+			}
+
+		}
+
+	}

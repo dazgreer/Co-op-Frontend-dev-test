@@ -1,0 +1,79 @@
+/***************************************
+06_components.less
+***************************************/
+
+
+// -----------------------------------------------------------------------------------------------
+// LOGO
+// -----------------------------------------------------------------------------------------------
+
+	.logo {
+		width: 68px;
+		margin-right: (@rhythm*3);
+	}
+
+
+
+// -----------------------------------------------------------------------------------------------
+// TITLE
+// -----------------------------------------------------------------------------------------------
+
+	.title {
+
+		@media (min-width: @screen-sm-min) {
+			display: flex;
+			align-items: center;
+		}
+
+	}
+
+
+
+// -----------------------------------------------------------------------------------------------
+// DONATION COMPONENT
+// -----------------------------------------------------------------------------------------------
+
+	.donation {
+
+		// vars
+		@border: 1px solid @color-grey-dc;
+		@hpadding: (@rhythm*5);
+
+		max-width: 412px;
+		background-color: @color-grey-fa;
+		border: @border;
+		box-shadow: 0 4px 2px -2px @color-grey-dc;
+		transition: box-shadow 0.2s ease-in-out;
+
+		&__main {
+			padding: (@rhythm*5) @hpadding;
+		}
+
+		&__header {
+			margin-bottom: (@rhythm*5);
+		}
+
+		&__footer {
+			padding: (@rhythm*4) @hpadding;
+			border-top: @border;
+
+			.last-child();
+		}
+
+	}
+
+	#progress,
+	#figures {
+		display: none;
+
+		&.show {
+			display: block;
+		}
+	}
+
+	.success {
+		padding: (@rhythm*2);
+		background-color: @color-primary;
+		color: @color-grey-f;
+		font-weight: 700;
+	}

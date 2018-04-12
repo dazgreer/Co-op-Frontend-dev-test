@@ -1,0 +1,33 @@
+/***************************************
+02_base.less
+***************************************/
+
+	html, body {
+		min-width: @min-width;
+	}
+
+	html {
+		background:	@color-grey-f;
+		font-size: @font-size-base;
+	}
+
+	body {
+		padding: (@grid-gutter-width*2);
+	}
+
+	body,
+	button,
+	input,
+	select,
+	textarea {
+	    color: @color-text;
+	    font-family: @font-ss;
+	    font-size: @font-size-base;
+	    line-height: @line-height-base;
+
+	    -webkit-text-size-adjust: none;
+
+		font-smooth:always;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
